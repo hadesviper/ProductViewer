@@ -1,12 +1,12 @@
 package com.herald.productviewer.presentation.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.herald.productviewer.R
 import com.herald.productviewer.databinding.ActivityMainBinding
+import com.herald.productviewer.presentation.ProductsAdapter
 import com.herald.productviewer.presentation.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,10 +20,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.txtTest.text = "howdy"
+
         viewModel.state.observe(this){
-            Log.i("TAG", "onCreate: $it")
-            binding.txtTest.text = it.products ?.size.toString()
+            it.products?.let {productsList->
+                binding.recyclerProducts.adapter= ProductsAdapter(productsList)
+            }
         }
     }
 }

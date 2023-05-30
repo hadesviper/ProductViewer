@@ -13,12 +13,14 @@
         android:gravity="center"
         android:orientation="vertical"
         tools:context=".presentation.activities.MainActivity">
-
-        <TextView
-            android:id="@+id/txtTest"
-            android:text="Testing"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerProducts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:listitem="@layout/product_item"
+            />
 
     </LinearLayout>
 </layout>
