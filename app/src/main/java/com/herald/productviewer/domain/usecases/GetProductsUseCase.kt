@@ -20,9 +20,9 @@ class GetProductsUseCase @Inject constructor(
                 it.toProductsModel()
             }))
         } catch (e: HttpException) {
-            emit(Resources.Error(message = ""))
+            emit(Resources.Error(message = e.message.toString()))
         } catch (e: IOException) {
-            emit(Resources.Error(message = ""))
+            emit(Resources.Error(message = e.message.toString()))
         }
     }
 }

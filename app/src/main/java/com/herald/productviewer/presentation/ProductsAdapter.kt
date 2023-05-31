@@ -3,15 +3,16 @@ package com.herald.productviewer.presentation
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.herald.productviewer.R
 import com.herald.productviewer.databinding.ProductItemBinding
 import com.herald.productviewer.domain.models.ProductsModel
+import com.herald.productviewer.presentation.fragments.FragmentListDirections
 
-class ProductsAdapter(private val itemList: List<ProductsModel>) :
+class ProductsAdapter(private val itemList: List<ProductsModel>, private val findNavController: NavController) :
     RecyclerView.Adapter<ProductsAdapter.ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -27,7 +28,6 @@ class ProductsAdapter(private val itemList: List<ProductsModel>) :
     override fun getItemCount() = itemList.size
 
     inner class ItemViewHolder(private val binding: ProductItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
         fun bind(item: ProductsModel,context: Context = binding.root.context) {
             Glide.with(context)
                 .load(item.image)
@@ -37,7 +37,8 @@ class ProductsAdapter(private val itemList: List<ProductsModel>) :
             binding.txtDescription.text = item.description
             binding.txtPrice.text = item.price
             binding.viewItem.setOnClickListener {
-                Toast.makeText(it.context, item.price, Toast.LENGTH_SHORT).show()
+                val action = FragmentListDirections.actionFragmentListToFragmentDetails(item.image,item.title)
+                findNavController.navigate(action)
             }
         }
     }
