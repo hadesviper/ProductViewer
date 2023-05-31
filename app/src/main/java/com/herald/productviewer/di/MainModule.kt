@@ -56,39 +56,4 @@ object MainModule {
     fun getRestApiRepo(retroService: RetroService): RetroRepo {
         return RetroImpl(retroService)
     }
-/*
-    @Singleton
-    @Provides
-    fun getChatHistoryDB(app: Application): ChatHistoryDatabase {
-        return Room.databaseBuilder(
-            app, ChatHistoryDatabase::class.java, ChatHistoryDatabase.DB_Name
-        ).build()
-    }
-
-    @Singleton
-    @Provides
-    fun getChatHistoryRepo(db: ChatHistoryDatabase): ChatHistoryRepo {
-        return ChatHistoryImpl(db.chatHistoryDao())
-    }
-
-    @Provides
-    fun getContext(@ApplicationContext context: Context): Context {
-        return context
-    }
-
-    @Singleton
-    @Provides
-    fun getFireStoreDB(): FirebaseFirestore {
-        val database = Firebase.firestore
-        database.firestoreSettings = firestoreSettings {
-            isPersistenceEnabled = false
-        }
-        return database
-    }
-
-    @Singleton
-    @Provides
-    fun getFirebaseAuth(): FirebaseAuth {
-        return Firebase.auth
-    }*/
 }
